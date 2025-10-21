@@ -13,8 +13,6 @@ const sampleProjects: Project[] = [
     category: 'personal',
     tags: ['N8N', 'Automation', 'Workflows', 'Integration'],
     featured: true,
-    image: '/n8n-site.jpg',
-    link: 'https://n8n.mkennedy.ca/',
   },
   {
     id: 'snow-removal-quote-tool',
@@ -23,7 +21,6 @@ const sampleProjects: Project[] = [
     category: 'business',
     tags: ['Next.js', 'Quote Tool', 'Business', 'Maps API'],
     featured: true,
-    image: '/snow-removal-site.jpg',
   },
   {
     id: 'portfolio-showcase',
