@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+/* ============================================
+   Dark-First Theme System
+   Inspired by modern portfolio sites
+   ============================================ */
+
+:root {
+  /* Background layers - Pure Black Theme */
+  --bg: #000000;
+  --surface: #0a0a0a;
+  --surface-2: #141414;
+
+  /* Borders & dividers */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+
+  /* Text colors - Pure White */
+  --text: #ffffff;
+  --text-muted: #b3b3b3;
+  --text-dim: #808080;
+
+  /* Accent colors - Black & White theme with subtle grays */
+  --accent: #ffffff;
+  --accent-alt: #e5e5e5;
+  --accent-weak: rgba(255, 255, 255, 0.05);
+  --accent-glow: rgba(255, 255, 255, 0.15);
+
+  /* Focus & interaction */
+  --ring: rgba(255, 255, 255, 0.3);
+
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, #ffffff 0%, #e5e5e5 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+
+@theme inline {
+  /* Tailwind theme integration */
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-accent: var(--accent);
+  --color-muted: var(--text-muted);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Glow effect for cards and elements */
+.shadow-glow {
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-glow-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-glow-hover:hover {
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.2),
+    0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* Ring glow for focus states */
+.ring-glow {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Edge light effect (subtle rim gradient) */
+.edge-light {
+  position: relative;
+}
+
+.edge-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.glass-hover {
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(26, 26, 26, 0.7);
+  border-color: var(--border-hover);
+}
+
+/* Badge gradient (for Featured badges, etc.) */
+.badge-gradient {
+  background: var(--gradient-accent);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  padding: 0.25rem 0.75rem;
+}
+
+.badge-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  border-radius: inherit;
+  opacity: 0.15;
+  z-index: -1;
+  margin: -2px;
+  padding: 2px;
+}
+
+/* Hover scale effects */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.01);
+}
+
+/* ============================================
+   Accessibility & Motion Preferences
+   ============================================ */
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hover-scale:hover,
+  .hover-scale-sm:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-weak);
+  color: var(--text);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
